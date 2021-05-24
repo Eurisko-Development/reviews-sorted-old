@@ -1,0 +1,1 @@
+<form method="post" action="options.php"><?php settings_fields('reviews-form') ?><?php do_settings_sections('reviews-form-settings') ?><?php submit_button() ?></form>

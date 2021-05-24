@@ -1,0 +1,1 @@
+<?phpuse Reviews\Foundation\Route;Route::post('reviews/submit', 'FeedbackController@submitReview');Route::get('reviews/status', 'Admin\ReviewsController@status');

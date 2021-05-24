@@ -1,0 +1,1 @@
+<form method="post" action="options.php"><?php settings_fields('reviews-mailchimp') ?><?php do_settings_sections('reviews-mailchimp-settings') ?><?php submit_button() ?></form>

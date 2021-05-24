@@ -1,0 +1,1 @@
+<?phpuse Reviews\Foundation\View;use Reviews\Foundation\FlashMessage;$_View = new View();?><div class="wrap Reviews-page">	<div class="breadcrumbs">		<?= 	  		$_View->section('breadcrumbs') ?>	</div>	<?php		echo FlashMessage::handle();	?>	<?= 	  	$_View->section('content') ?></div>
