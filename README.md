@@ -8,25 +8,18 @@ Author: [Reviews Sorted](http://www.reviewssorted.com)
 
 ## Shortcodes
 
-### Reviews Form
 `[reviews-form]` is used to create the form on the /sumbit-a-review/ pages:
 https://www.eurisko.com.au/submit-a-review/
 
-### Reviews Average
 `[reviews-average]`is used to display to average of all aggregated review on the site
 ![](https://euriskodevelopment.com.au/images/reviews-average.png)
 
-### Reviews Slider
 `[reviews-slider]` is a carousel of published reviews. There is a 375 character display limit and at least one review must be published before it will display properly.
 ![](https://euriskodevelopment.com.au/images/reviews-slider.png)
 
-### Reviews Homepage
 `[reviews-homepage]` is a preset combination of the two shortcodes above ( only used in Automasters )
 
 ## Unused Shortcodes
 
-### Reviews JSON
 `[reviews-json]`
-
-### Reviews Branchpage
 `[reviews-branchpage]`
