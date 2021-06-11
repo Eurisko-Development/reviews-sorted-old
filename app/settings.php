@@ -19,14 +19,9 @@ $settings = [
 	'overall_rating_label' => [
 		'name' => 'Overall Rating Month Label',
 		'field' => 'select'
-	],
+	]
 	
-	'email_sender_name' => [
-		'name' => 'Sender - "From" name'
-	],
-	'email_sender_address' => [
-		'name' => 'Sender - "From" address'
-	],
+	
 	
 ];
  $selectOption=get_option('reviews-mailchimp-settings'); 

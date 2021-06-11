@@ -441,8 +441,6 @@ function review_ajjax_schedule_action_callback(){
 	$schedule = get_email_schedule_by_id($id);
 	$review   = get_review_by_id($schedule->review_id);
 	
-	$settings = get_option('reviews-reviews-settings');
-	
 	if($schedule && $review){
 		global $wpdb;
 		$table_name    = "{$wpdb->prefix}email_schedule";
@@ -478,36 +476,19 @@ function review_ajjax_schedule_action_callback(){
 			}
 			$message = apply_filters( 'the_content', $message); 
 			$message = str_replace(
-				array('*|FNAME|*', '*|LNAME|*', '*|STARRATING|*', '*|FEEDBACK|*', '*|EMAIL|*'
-					, '*|STATE|*'
-					, '*|PHONE|*'
-				),
+				array('*|FNAME|*', '*|LNAME|*', '*|STARRATING|*', '*|FEEDBACK|*', '*|EMAIL|*'),
 				array(
 					$review->authorfname,
 					$review->authorlname,
 					$review->rating,
 					$review->content,
 					$review->email,
-					$review->state,
-					$review->phone,
 				),
 				$message
 			);
 					
 			$to = $review->email; // 'phongtran255@gmail.com'; // 
 			$headers = array( 'Content-Type: text/html; charset=UTF-8' );	
-			
-			if( isset($settings['email_sender_name']) ){
-				$sender_name = !empty($settings['email_sender_name']) ? $settings['email_sender_name'] : get_bloginfo('name');
-				$sender_address = !empty($settings['email_sender_address']) ? $settings['email_sender_address'] : get_bloginfo('admin_email');
-
-				$headers[] = "From: {$sender_name} <{$sender_address}>";
-			}
-			
-			if( isset($settings['email-footer-content']) && !empty($settings['email-footer-content']) ) {
-				$message .= $settings['email-footer-content'];
-			}
-			
 			$sent = wp_mail( $to, $subject, $message, $headers, array( '' ) );
 			$wpdb->query( $wpdb->prepare( 
 				"
