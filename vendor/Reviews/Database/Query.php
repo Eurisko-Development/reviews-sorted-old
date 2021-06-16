@@ -120,9 +120,6 @@ class Query
 		$sql .= "(". implode(', ', array_map(function ($value) {
 			return "'$value'";
 		}, array_values($data))) .") ";
-
-		echo $sql;
-		die();
 		
 		$statement = $this->connection->prepare($sql);		
 		$result = $statement->execute($data);
