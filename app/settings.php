@@ -40,6 +40,18 @@ $settings = [
 
 	],
 
+	'email_sender_name' => [
+
+		'name' => 'Sender - "From" name'
+
+	],
+
+	'email_sender_address' => [
+
+		'name' => 'Sender - "From" address'
+
+	],
+
 	'local_business_heading' => [ 
 
 		'name' => 'LOCAL BUSINESS DETAILS',	
