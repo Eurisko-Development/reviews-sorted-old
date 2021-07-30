@@ -1,4 +1,0 @@
-[12-Apr-2019 10:38:12 Etc/GMT] PHP Fatal error:  Uncaught Error: Call to undefined function Reviews\Application\Reviews\add_action() in /home/dextofmd/public_html/reviews/wp-content/plugins/review/app/assets.php:15
-Stack trace:
-#0 {main}
-  thrown in /home/dextofmd/public_html/reviews/wp-content/plugins/review/app/assets.php on line 15
