@@ -38,7 +38,33 @@ $settings = [
 
 		'field' => 'select'
 
+	],
+
+	'local_business_heading' => [ 
+
+		'name' => 'LOCAL BUSINESS DETAILS',	
+
+		'field' => 'hidden'	
+
+	],
+
+	'business_address' => [
+
+		'name' => 'Business Address',
+
+		'field' => 'text'
+
+	],
+
+	'business_phone' => [
+
+		'name' => 'Business Phone No.',
+
+		'field' => 'text'
+
 	]
+
+
 ];
 
  
