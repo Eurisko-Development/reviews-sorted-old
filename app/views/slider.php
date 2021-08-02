@@ -17,9 +17,9 @@
 				<div class="testimonial-slide-speech" itemprop="itemReviewed" itemscope itemtype="https://schema.org/LocalBusiness">
 					<div class="testimonial-slide-speech-text" itemprop="reviewBody">
 					<?php 
-					$max_str_length = $option['testimonial_content_length'] ?? 180;
+					$max_str_length = $option['testimonial_character_length'] ?? 180;
 					$testi_content = nl2br($review->content);
-					
+
 						if (strlen($testi_content) >= $max_str_length) {
 							echo substr($testi_content, 0, $max_str_length). " ... ";
 						}

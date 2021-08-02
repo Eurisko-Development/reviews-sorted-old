@@ -30,11 +30,9 @@ $settings = [
 
 	],
 
-	'testimonial_content_length' => [
+	'testimonial_character_length' => [
 
-		'name' => 'Testimonal Content - Character Length',
-
-		'field' => 'number'
+		'name' => 'Testimonal Character Length',
 		
 	],
 
