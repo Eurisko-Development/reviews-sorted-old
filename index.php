@@ -6,7 +6,7 @@ Plugin Name:  Reviews Sorted
 
 Description: Manage your online reputation and collect verified customer reviews that you can publish to your website, your social media & pages & third-party review websites. Build your online reputation by promoting positive reviews and manage negative reviews before they become a reputation nightmare.
 
-Version: 1.0.2
+Version: 1.0.3
 
 Author: <a href="http://www.reviewssorted.com">Reviews Sorted</a>
 

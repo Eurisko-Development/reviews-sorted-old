@@ -30,7 +30,13 @@ $settings = [
 
 	],
 
-	 
+	'testimonial_content_length' => [
+
+		'name' => 'Testimonal Content - Character Length',
+
+		'field' => 'number'
+		
+	],
 
 	'overall_rating_label' => [
 
@@ -51,6 +57,7 @@ $settings = [
 		'name' => 'Sender - "From" address'
 
 	],
+
 
 	'local_business_heading' => [ 
 
