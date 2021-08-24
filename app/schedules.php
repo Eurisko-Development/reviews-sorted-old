@@ -154,8 +154,7 @@ function reviews_monthly_reports_scheduler($a=1) {
                 'This mail is being sent to all these emails '.implode(',',$emails) ,
                 [
                     'Content-Type: text/html; charset=UTF-8',
-                    'From:'.$mailtitle,
-                    'Cc: deploy@eurisko.com.au'
+                    'From:'.$mailtitle
                 ],
                 [
                     $filepath
