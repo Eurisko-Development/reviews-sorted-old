@@ -30,7 +30,13 @@ $settings = [
 
 	],
 
-	 
+
+	'testimonial_character_length' => [
+
+		'name' => 'Testimonal Character Length',
+		
+	],
+
 
 	'overall_rating_label' => [
 
@@ -39,6 +45,19 @@ $settings = [
 		'field' => 'select'
 
 	],
+
+	'email_sender_name' => [
+
+		'name' => 'Sender - "From" name'
+
+	],
+
+	'email_sender_address' => [
+
+		'name' => 'Sender - "From" address'
+
+	],
+
 
 	'local_business_heading' => [ 
 

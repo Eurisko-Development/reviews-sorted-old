@@ -118,7 +118,7 @@ class Query
 		}, array_keys($data))) .") ";
 		$sql .= "VALUES ";
 		$sql .= "(". implode(', ', array_map(function ($value) {
-			return "'$value'";
+			return $this->connection->quote($value);
 		}, array_values($data))) .") ";
 		
 		$statement = $this->connection->prepare($sql);		

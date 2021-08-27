@@ -1,3 +1,4 @@
+
 jQuery(document).ready(function(){
 
 jQuery( "#activation_form .hidden" ).closest('tr').remove();
@@ -112,7 +113,7 @@ jQuery('.bxslider').bxSlider({
 
 			
 
-            jQuery(".Reviews-Page a.submitdelete").click(function(event) {
+            jQuery("a.submitdelete").click(function(event) {
 
 				
 
@@ -404,7 +405,7 @@ var data = {
 
 	
 
-$.ajax({
+jQuery.ajax({
 
   url: ajaxurl,
 
@@ -673,3 +674,4 @@ jQuery('#loader').show();
 		});
 
 });
+

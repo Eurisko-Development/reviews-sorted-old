@@ -16,10 +16,13 @@
 			<div>
 				<div class="testimonial-slide-speech" itemprop="itemReviewed" itemscope itemtype="https://schema.org/LocalBusiness">
 					<div class="testimonial-slide-speech-text" itemprop="reviewBody">
-					<?php /* <?= //nl2br($review->content) */ ?>
-					<?php $testi_content = nl2br($review->content);
-						if (strlen($testi_content) >= 180) {
-							echo substr($testi_content, 0, 180). " ... ";
+
+					<?php 
+					$max_str_length = $option['testimonial_character_length'] ?? 180;
+					$testi_content = nl2br($review->content);
+
+						if (strlen($testi_content) >= $max_str_length) {
+							echo substr($testi_content, 0, $max_str_length). " ... ";
 						}
 						else {
 							echo $testi_content;
@@ -27,11 +30,12 @@
 						?>
 					</div>	
 					
-					<?php $settings = get_option('reviews-reviews-settings'); ?>
+					
 					<meta itemprop="name" content="<?php bloginfo('name'); ?>">	
 					<meta itemprop="image" content="<?php echo get_site_icon_url();?>">	
-					<meta itemprop="address" content="<?php echo $settings['business_address'] ?>">	
-					<meta itemprop="telephone" content="<?php echo $settings['business_phone'] ?>">	
+					<meta itemprop="address" content="<?php echo $option['business_address'] ?>">	
+					<meta itemprop="telephone" content="<?php echo $option['business_phone'] ?>">	
+
 					<meta itemprop="priceRange" content="$$$">					
 				</div>
 				<span class="testimonial-slide-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
