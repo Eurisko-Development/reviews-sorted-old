@@ -30,11 +30,13 @@ $settings = [
 
 	],
 
+
 	'testimonial_character_length' => [
 
 		'name' => 'Testimonal Character Length',
 		
 	],
+
 
 	'overall_rating_label' => [
 

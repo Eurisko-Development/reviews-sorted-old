@@ -16,6 +16,7 @@
 			<div>
 				<div class="testimonial-slide-speech" itemprop="itemReviewed" itemscope itemtype="https://schema.org/LocalBusiness">
 					<div class="testimonial-slide-speech-text" itemprop="reviewBody">
+
 					<?php 
 					$max_str_length = $option['testimonial_character_length'] ?? 180;
 					$testi_content = nl2br($review->content);
@@ -34,6 +35,7 @@
 					<meta itemprop="image" content="<?php echo get_site_icon_url();?>">	
 					<meta itemprop="address" content="<?php echo $option['business_address'] ?>">	
 					<meta itemprop="telephone" content="<?php echo $option['business_phone'] ?>">	
+
 					<meta itemprop="priceRange" content="$$$">					
 				</div>
 				<span class="testimonial-slide-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
