@@ -1,1 +1,13 @@
-<?phpnamespace Reviews\Application\Reviews\Controllers\Admin;use Reviews\Foundation\View;class SettingsController{	public static function index() 	{		$_View = new View();		return $_View->render('admin.settings.index', array(), true);	}}
+<?php
+
+namespace Reviews\Application\Reviews\Controllers\Admin;
+
+use Reviews\Foundation\View;
+
+class SettingsController
+{
+	public static function index() 
+	{
+		@View::render('admin.settings.index', array(), true);
+	}
+}

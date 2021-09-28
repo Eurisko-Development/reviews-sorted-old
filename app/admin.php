@@ -1,42 +1,25 @@
 <?php
 
 use Reviews\Foundation\Admin;
-
 Admin::pages('reviews', 'Reviews', 'Reviews', 
-
 ['Manage Activation ' => [ 		
-
 'slug' => '',				
-
 'uses' => 'Admin\ActivationController@index',
-
 'capability' => 'edit_posts'	
-
 		],
-
 ], 'edit_posts');
 
+
 $selectOptions=get_option('reviews-activationkey-settings');
-
-
-
-
-
-if( isset($selectOptions['activation']) &&  $selectOptions['activation'] == 'true'){	
+if($selectOptions['activation'] == 'true'){	
 
 Admin::pages('reviews', 'Reviews', 'Reviews', [
-
-	'Form Settings' => [ 
-
+		'Form Settings' => [ 
 		'slug' => 'forms',	
-
 		'uses' => 'Admin\FormController@index',	
-
 		'capability' => 'edit_posts'	
-
-	],
-
-
+],
+	
 
 	'General Settings' => [
 
@@ -45,126 +28,88 @@ Admin::pages('reviews', 'Reviews', 'Reviews', [
 		'uses' => 'Admin\SettingsController@index',
 
 		'capability' => 'edit_posts'
-
-	]
-
-	,		
-
+		]
+		,		
 	'Reviews List' => [	
-
-		'slug'  => '',
-
-		'uses'  => 'Admin\ReviewsController@index',
-
-		'capability' => 'edit_posts',
-
-		'pages' => [
-
-			[
-
-				'slug' => 'edit',
-
-				'uses' => 'Admin\ReviewsController@edit'
-
-			],
-
-			[
-
-				'slug' => 'update',
-
-				'uses' => 'Admin\ReviewsController@update'	
-
-			],
-
-			[
-
-				'slug' => 'delete',
-
-				'uses' => 'Admin\ReviewsController@delete'	
-
-			]	
-
-		]	
-
+	'slug'  => '',
+	'uses'  => 'Admin\ReviewsController@index',
+	'capability' => 'edit_posts',
+	'pages' => [
+	['slug' => 'edit',
+	'uses' => 'Admin\ReviewsController@edit'],
+	['slug' => 'update',
+	'uses' => 'Admin\ReviewsController@update'	],
+	['slug' => 'delete',
+	'uses' => 'Admin\ReviewsController@delete'	
+	]	
+	]	
 	],
-
 	
-
-	'Email schedule' => [
-
-		'slug' => 'email-schedule',
-
-		'uses' => 'Admin\EmailController@schedule',
-
-
-
-		'capability' => 'edit_posts'
-
-	],		  		
-
-
-
-	
-
 	'Email' => [
 
 		'slug' => 'email-setting',
 
 		'uses' => 'Admin\EmailController@index',
+		
+        'capability' => 'edit_posts'
 
-
-
-		'capability' => 'edit_posts'
-
-	],		  		
-
-
-
-	'Email Template' => [
+		],		  		
+		
+		'Email Template' => [
 
 		'slug' => 'email-template',
 
 		'uses' => 'Admin\EmailController@template',
+		
+        'capability' => 'edit_posts'
 
-
-
-		'capability' => 'edit_posts'
-
-	],		  		
-
-
-
-
-
-	'Email Template Design' => [
+		],		  		
+		
+		
+		'Email Template Design' => [
 
 		'slug' => 'email-template-design',
 
 		'uses' => 'Admin\EmaildesignController@index',
+		
+        'capability' => 'edit_posts'
 
+		],
+	
 
+	'Mailchimp Settings' => [
+
+		'slug' => 'mailchimp',
+
+		'uses' => 'Admin\MailchimpController@index',
 
 		'capability' => 'edit_posts'
 
-	]	
-
+	]		
 ],
-
  'edit_posts');}
 
+
 add_action( 'admin_init', 'automasters_remove_menu_pages' );
+
+
+
+
 
 function automasters_remove_menu_pages()
 
 {
 
+
     $current_user = wp_get_current_user();
+
 
     if ( !($current_user instanceof WP_User) )
 
        return;
 
     $roles = $current_user->roles;
+
 
     if (in_array('contributor', $roles)) {
 
@@ -206,5 +151,10 @@ function automasters_remove_menu_pages()
 
     }
 
+
 }
+
+
+
+
 

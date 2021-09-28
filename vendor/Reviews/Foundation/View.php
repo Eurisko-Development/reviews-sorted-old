@@ -1,1 +1,93 @@
-<?phpnamespace Reviews\Foundation;class View{	public static $dir;	public static $sections = [];	public static $title;	public static $content;	public function init($dir) 	{		static::$dir = $dir;				if (preg_match("/\/Reviews/", $_SERVER['REQUEST_URI'])) {			add_filter('pre_get_document_title', [__CLASS__, 'showTitle']);			add_filter('wpseo_title', [__CLASS__, 'showTitle']);			add_filter('the_content', [__CLASS__, 'show']);		}	}	public function title($title) 	{		static::$title = $title;	}	public function content($template, $args = array()) 	{		$result = static::render($template, $args);		static::$content = $result;	}	public function render($template, $args = array(), $show = false) 	{		extract($args);		$template = str_replace('.', '/', $template);		ob_start();		include(static::$dir .'/app/views/'. $template .'.php');				if ($show) {			echo ob_get_clean();			return;		}		return ob_get_clean();	}	public static function startSection($section)	{		ob_start();	}	public static function endSection($section) 	{		static::$sections[$section] = ob_get_clean();	}	public static function section($section)	{		return static::$sections[$section];	}	public static function make($layout) 	{		$_View = new View();		return $_View->render($layout);	}	public static function show() 	{		return static::$content;	}	public static function showTitle($title) 	{		return static::$title ?: $title;	}	public static function titleParts($title) 	{		if (static::$title) {			$title['title'] = static::$title;		}		return $title;	}}
+<?php
+
+namespace Reviews\Foundation;
+
+class View
+{
+	public static $dir;
+
+	public static $sections = [];
+
+	public static $title;
+
+	public static $content;
+
+	public function init($dir) 
+	{
+		static::$dir = $dir;
+		
+		if (preg_match("/\/Reviews/", $_SERVER['REQUEST_URI'])) {
+			add_filter('pre_get_document_title', [__CLASS__, 'showTitle']);
+			add_filter('wpseo_title', [__CLASS__, 'showTitle']);
+			add_filter('the_content', [__CLASS__, 'show']);
+		}
+	}
+
+	public function title($title) 
+	{
+		static::$title = $title;
+	}
+
+	public function content($template, $args = array()) 
+	{
+		$result = static::render($template, $args);
+
+		static::$content = $result;
+	}
+
+	public function render($template, $args = array(), $show = false) 
+	{
+		extract($args);
+
+		$template = str_replace('.', '/', $template);
+
+		ob_start();
+		include(static::$dir .'/app/views/'. $template .'.php');
+		
+		if ($show) {
+			echo ob_get_clean();
+			return;
+		}
+
+		return ob_get_clean();
+	}
+
+	public static function startSection($section)
+	{
+		ob_start();
+	}
+
+	public static function endSection($section) 
+	{
+		static::$sections[$section] = ob_get_clean();
+	}
+
+	public static function section($section)
+	{
+		return static::$sections[$section];
+	}
+
+	public static function make($layout) 
+	{
+		return View::render($layout);
+	}
+
+	public static function show() 
+	{
+		return static::$content;
+	}
+
+	public static function showTitle($title) 
+	{
+		return static::$title ?: $title;
+	}
+
+	public static function titleParts($title) 
+	{
+		if (static::$title) {
+			$title['title'] = static::$title;
+		}
+
+		return $title;
+	}
+}

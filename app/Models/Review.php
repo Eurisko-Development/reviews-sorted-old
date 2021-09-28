@@ -1,1 +1,29 @@
-<?phpnamespace Reviews\Application\Reviews\Models;use Reviews\Database\Model;class Review extends Model{	const STATUS_PENDING = 'Pending';	const STATUS_PUBLISHED = 'Published';	const STATUS_DECLINED = 'Declined';	protected $fillable = ['authorfname','authorlname','state','phone', 'email', 'region', 'content', 'rating','userip','recommend','status' ,'created_at'];	protected $casts = [		'questionnaire' => 'array'	];	public function fill($data) 	{		parent::fill($data);		$questionnaire = ['vacuumed', 'windscreens', 'tyres', 'dash'];				$recommend= array_values(array_intersect_key($data, array_flip($questionnaire)));		$this->questionnaire = $recommend;			}}
+<?php
+
+namespace Reviews\Application\Reviews\Models;
+
+use Reviews\Database\Model;
+
+class Review extends Model
+{
+	const STATUS_PENDING = 'Pending';
+	const STATUS_PUBLISHED = 'Published';
+	const STATUS_DECLINED = 'Declined';
+
+	protected $fillable = ['authorfname','authorlname','state','phone', 'email', 'region', 'content', 'rating','userip','recommend','status' ,'created_at'];
+
+	protected $casts = [
+		'questionnaire' => 'array'
+	];
+
+	public function fill($data) 
+	{
+		parent::fill($data);
+
+		$questionnaire = ['vacuumed', 'windscreens', 'tyres', 'dash'];
+		
+		$recommend= array_values(array_intersect_key($data, array_flip($questionnaire)));
+		$this->questionnaire = $recommend;
+		
+	}
+}

@@ -1,0 +1,36 @@
+<?php
+
+
+
+
+
+namespace Reviews\Application\Reviews\Controllers\Admin;
+
+
+
+
+
+use Reviews\Foundation\View;
+
+
+
+
+
+class MailchimpController
+
+{
+
+
+	public static function index() 
+
+
+	{
+
+
+		@View::render('admin.forms.mailchimp', array(), true);
+
+
+	}
+
+
+}

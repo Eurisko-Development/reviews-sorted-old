@@ -1,1 +1,97 @@
-<?phpuse Reviews\Foundation\Config;use Reviews\Foundation\FormSetting;$FormSettings = [	'fheadingg' => [ 		'name' => 'FIELD TITLE',		'field' => 'hidden'		],		'fheading' => [ 			'name' => 'Form Main Heading',		],				'fsubheading' => [ 			'name' => 'Form Sub Heading',		],'ffield' => [ 		'name' => 'FIELD NAMES',		'field' => 'hidden'		],	'fname' => [ 		'name' => 'First Name Placeholder',	],		'lname' => [ 		'name' => 'Last Name Placeholder',	],		'state' => [ 		'name' => 'State/Suburb Placeholder',	],		'femail' => [ 		'name' => 'Email Placeholder',	],		'fphone' => [ 		'name' => 'Phone Placeholder',	],		'feedback' => [ 		'name' => 'Feedback Placeholder',	],	'formdesign' => [			'name' => 'Form Design',			'field' => 'hidden'		],		'inputbox-color' => [		'name' => ' InputBox Background Color',	],		'form-color' => [		'name' => ' Form Background Color',	],		'submitbutton-color' => [		'name' => ' Submit Button Background Color',	],		'submitbutton-font-color' => [		'name' => ' Submit Button Font Color',	],		'formborder-color' => [		'name' => ' Form Border Color',	],		'forminputboder-color' => [		'name' => ' Form InputBox Border Color',	]	];FormSetting::add('reviews-form', $FormSettings);
+<?php
+
+use Reviews\Foundation\Config;
+
+use Reviews\Foundation\FormSetting;
+$FormSettings = [	
+'fheadingg' => [ 		
+'name' => 'FIELD TITLE',	
+	'field' => 'hidden'	
+	],
+	
+	'fheading' => [ 		
+	'name' => 'Form Main Heading',	
+	],			
+	'fsubheading' => [ 		
+	'name' => 'Form Sub Heading',	
+	],
+
+'ffield' => [ 		
+'name' => 'FIELD NAMES',	
+	'field' => 'hidden'	
+	],
+	'fname' => [ 
+
+		'name' => 'First Name Placeholder',
+
+	],
+	
+	'lname' => [ 
+
+		'name' => 'Last Name Placeholder',
+
+	],
+	
+	'state' => [ 
+
+		'name' => 'State/Suburb Placeholder',
+
+	],
+	
+	'femail' => [ 
+
+		'name' => 'Email Placeholder',
+
+	],
+	
+	'fphone' => [ 
+
+		'name' => 'Phone Placeholder',
+
+	],
+	
+	'feedback' => [ 
+
+		'name' => 'Feedback Placeholder',
+
+	],
+	'formdesign' => [			'name' => 'Form Design',			'field' => 'hidden'		],
+	
+	'inputbox-color' => [
+
+		'name' => ' InputBox Background Color',
+
+	],
+	
+	'form-color' => [
+
+		'name' => ' Form Background Color',
+
+	],
+	
+	'submitbutton-color' => [
+
+		'name' => ' Submit Button Background Color',
+
+	],		'submitbutton-font-color' => [		'name' => ' Submit Button Font Color',	],
+	
+	'formborder-color' => [
+
+		'name' => ' Form Border Color',
+
+	],
+	
+	'forminputboder-color' => [
+
+		'name' => ' Form InputBox Border Color',
+
+	]
+
+
+	
+
+];
+
+
+
+FormSetting::add('reviews-form', $FormSettings);

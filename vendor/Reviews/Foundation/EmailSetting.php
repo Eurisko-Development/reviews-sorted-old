@@ -1,1 +1,73 @@
-<?phpnamespace Reviews\Foundation;class EmailSetting{	public static $settings = [];	public static function add($plugin, $settings) 	{		static::$settings[$plugin] = $settings;	}	public static function boot() 	{		foreach (static::$settings as $plugin => $settings) {			$field = $plugin .'-settings';			register_setting($plugin, $field);			add_settings_section(				$plugin,				'Settings',				[__CLASS__, 'section'],				$field			);			foreach ($settings as $setting => $options) {				add_settings_field(					$setting,					$options['name'],					[__CLASS__, 'setting'],					$field,					$plugin,					[$field, $setting, $options]				);			}		}	}	public static function section() 	{	}	public static function setting($args) 	{		list($field, $setting, $options) = $args;				$values = get_option($field);		if ( ! isset($options['field'])) {			$options['field'] = 'text';		}		if ($options['field'] == 'text') {			echo '<input type="text" name="'. $field .'['. $setting .']" value="'. $values[$setting] .'" style="width: 390px">';		}		elseif ($options['field'] == 'textarea') {			echo '<textarea name="'. $field .'['. $setting .']" rows="5" cols="60">'. $values[$setting] .'</textarea>';		}		 elseif ($options['field'] == 'select') {						 $blogusers = get_users( 'role__not_in=administrator' );				echo'<select name="'. $field .'['. $setting .']" >';			echo '<option name="" rows="5" cols="60"> Select Email </option>';			foreach ( $blogusers as $user ) {			echo '<option name="'.esc_html( $user->user_email ).'" rows="5" cols="60">'. esc_html( $user->user_email ) .'</option>';			}			echo'</select>';		}	}}
+<?php
+
+namespace Reviews\Foundation;
+
+class EmailSetting
+{
+	public static $settings = [];
+
+	public static function add($plugin, $settings) 
+	{
+		static::$settings[$plugin] = $settings;
+	}
+
+	public static function boot() 
+	{
+		foreach (static::$settings as $plugin => $settings) {
+			$field = $plugin .'-settings';
+
+			register_setting($plugin, $field);
+
+			add_settings_section(
+				$plugin,
+				'Settings',
+				[__CLASS__, 'section'],
+				$field
+			);
+
+			foreach ($settings as $setting => $options) {
+				add_settings_field(
+					$setting,
+					$options['name'],
+					[__CLASS__, 'setting'],
+					$field,
+					$plugin,
+					[$field, $setting, $options]
+				);
+			}
+		}
+	}
+
+	public static function section() 
+	{
+	}
+
+	public static function setting($args) 
+	{
+		list($field, $setting, $options) = $args;
+		
+		$values = get_option($field);
+
+		if ( ! isset($options['field'])) {
+			$options['field'] = 'text';
+		}
+
+		if ($options['field'] == 'text') {
+			echo '<input type="text" name="'. $field .'['. $setting .']" value="'. $values[$setting] .'" style="width: 390px">';
+		}
+		elseif ($options['field'] == 'textarea') {
+			echo '<textarea name="'. $field .'['. $setting .']" rows="5" cols="60">'. $values[$setting] .'</textarea>';
+		}
+		 elseif ($options['field'] == 'select') {
+			
+			 $blogusers = get_users( 'role__not_in=administrator' );
+	
+			echo'<select name="'. $field .'['. $setting .']" >';
+			echo '<option name="" rows="5" cols="60"> Select Email </option>';
+			foreach ( $blogusers as $user ) {
+			echo '<option name="'.esc_html( $user->user_email ).'" rows="5" cols="60">'. esc_html( $user->user_email ) .'</option>';
+			}
+			echo'</select>';
+		}
+	}
+}

@@ -1,1 +1,109 @@
-<?phpnamespace Reviews\Foundation;use Reviews\Contracts\Request;use Reviews\Foundation\Validator\ValidatorException;class Validator{	public static $errorsKey = 'Reviews.validator.errors';	public static $oldKey = 'Reviews.validator.old';	public static function old($field, $default = null)	{		if (isset($_SESSION[static::$oldKey]) && isset($_SESSION[static::$oldKey][$field])) {			$value = $_SESSION[static::$oldKey][$field];			unset($_SESSION[static::$oldKey][$field]);									return $value;		}				return $default;	}	public function saveOld($field, $value)	{		$_SESSION[static::$oldKey][$field] = $value;	}	public static function error($field, $message)	{		if (!isset($_SESSION[static::$errorsKey][$field])) $_SESSION[static::$errorsKey][$field] = [];		$_SESSION[static::$errorsKey][$field][] = $message;	}	public static function hasError($field)	{		return isset($_SESSION[static::$errorsKey]) && isset($_SESSION[static::$errorsKey][$field]);	}	public static function getErrors()	{		return $_SESSION[static::$errorsKey];	}	public static function get($field)	{		$error = $_SESSION[static::$errorsKey][$field][0];		unset($_SESSION[static::$errorsKey][$field]);		return $error;	}	public static function validate($data, $rulesList = null)	{		if ($data instanceof Request) {			$rulesList = $data->handle();			$data = $_REQUEST;		}		$_SESSION[static::$errorsKey] = [];		$success = true;		foreach ($rulesList as $field => $list) {			$rules = !is_array($list) ? explode('|', $list) : $list;			foreach ($rules as $rule) {				$arguments = array();				if (stristr($rule, ':')) {					list($rule, $arguments) = explode(':', $rule);					$arguments = explode(',', $arguments);					if (!is_array($arguments)) $arguments = array($arguments);				}				$rule = ucwords(str_replace("_", " ", $rule));				$rule = str_replace(" ", "", $rule);				$validatorClass = "Reviews\Foundation\Validator\\$rule";				if (class_exists($validatorClass)) {					$arguments = array_merge(array($data, $field), $arguments);									$result = call_user_func_array(array($validatorClass, 'validate'), $arguments);					//$result = $validatorClass::validate($data, $field);					if ($result !== true) {						$success = false;						static::error($field, $result);					}				} else {					throw new ValidatorException("Validator $rule: class $validatorClass doesn't exist");				}			}		}		// Save old form values		if (!$success) {			foreach ($data as $field => $value) {				static::saveOld($field, $value);			}		}		return $success;	}}
+<?php
+
+namespace Reviews\Foundation;
+
+use Reviews\Contracts\Request;
+use Reviews\Foundation\Validator\ValidatorException;
+
+class Validator
+{
+	public static $errorsKey = 'Reviews.validator.errors';
+	public static $oldKey = 'Reviews.validator.old';
+
+	public static function old($field, $default = null)
+	{
+		if (isset($_SESSION[static::$oldKey]) && isset($_SESSION[static::$oldKey][$field])) {
+			$value = $_SESSION[static::$oldKey][$field];
+			unset($_SESSION[static::$oldKey][$field]);
+			
+			
+			return $value;
+		}
+		
+		return $default;
+	}
+
+	public function saveOld($field, $value)
+	{
+		$_SESSION[static::$oldKey][$field] = $value;
+	}
+
+	public static function error($field, $message)
+	{
+		if (!isset($_SESSION[static::$errorsKey][$field])) $_SESSION[static::$errorsKey][$field] = [];
+
+		$_SESSION[static::$errorsKey][$field][] = $message;
+	}
+
+	public static function hasError($field)
+	{
+		return isset($_SESSION[static::$errorsKey]) && isset($_SESSION[static::$errorsKey][$field]);
+	}
+
+	public static function getErrors()
+	{
+		return $_SESSION[static::$errorsKey];
+	}
+
+	public static function get($field)
+	{
+		$error = $_SESSION[static::$errorsKey][$field][0];
+		unset($_SESSION[static::$errorsKey][$field]);
+
+		return $error;
+	}
+
+	public static function validate($data, $rulesList = null)
+	{
+		if ($data instanceof Request) {
+			$rulesList = $data->handle();
+			$data = $_REQUEST;
+		}
+
+		$_SESSION[static::$errorsKey] = [];
+		$success = true;
+
+		foreach ($rulesList as $field => $list) {
+			$rules = !is_array($list) ? explode('|', $list) : $list;
+
+			foreach ($rules as $rule) {
+				$arguments = array();
+
+				if (stristr($rule, ':')) {
+					list($rule, $arguments) = explode(':', $rule);
+					$arguments = explode(',', $arguments);
+					if (!is_array($arguments)) $arguments = array($arguments);
+				}
+
+				$rule = ucwords(str_replace("_", " ", $rule));
+				$rule = str_replace(" ", "", $rule);
+
+				$validatorClass = "Reviews\Foundation\Validator\\$rule";
+
+				if (class_exists($validatorClass)) {
+					$arguments = array_merge(array($data, $field), $arguments);
+				
+
+					$result = call_user_func_array(array($validatorClass, 'validate'), $arguments);
+					//$result = $validatorClass::validate($data, $field);
+					if ($result !== true) {
+						$success = false;
+
+						static::error($field, $result);
+					}
+				} else {
+					throw new ValidatorException("Validator $rule: class $validatorClass doesn't exist");
+				}
+			}
+		}
+
+		// Save old form values
+		if (!$success) {
+			foreach ($data as $field => $value) {
+				static::saveOld($field, $value);
+			}
+		}
+
+		return $success;
+	}
+}

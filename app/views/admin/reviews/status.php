@@ -1,1 +1,3 @@
-<h1>	Status successfully changed: <?= $review->status ?></h1>
+<h1>
+	Status successfully changed: <?= $review->status ?>
+</h1>
