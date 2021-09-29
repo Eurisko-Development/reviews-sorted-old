@@ -14,8 +14,9 @@ class FeedbackController
 	        'min' => 3,
 	        'limit' => 10
 	    ), $attributes);
-	    $rating = explode(',', $a['rating']);
-	    if (!is_array($rating)) $rating = [$rating];
+	    $rating = [];
+			if (isset($a['rating'])) { $rating = explode(',', $a['rating']); }
+			if (!is_array($rating)) $rating = [$rating];
 	    
 	    $months = sizeof(Review::groupBy('YEAR(created_at)')
 	    				->groupBy('MONTH(created_at)')
