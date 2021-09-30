@@ -1,3 +1,4 @@
+
 jQuery(document).ready(function(){
 
 jQuery( "#activation_form .hidden" ).closest('tr').remove();
@@ -673,3 +674,4 @@ jQuery('#loader').show();
 		});
 
 });
+

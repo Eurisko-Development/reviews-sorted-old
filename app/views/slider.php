@@ -39,7 +39,7 @@
 				<div class="testimonial-slide-author">
 					<span  itemprop="author" itemscope itemtype="https://schema.org/Person">
 						<strong itemprop="name"><?= $review->authorfname."&nbsp;".$review->authorlname ?></strong>, 
-					</span> <!--?= $review->state ?-->
+					</span> 
 					<span class="testimonial-region">
 						<?= $review->state ?>
 					</span> - <?= date('d M Y', strtotime($review->created_at)) ?><br>
