@@ -113,7 +113,7 @@ jQuery('.bxslider').bxSlider({
 
 			
 
-            jQuery("a.submitdelete").click(function(event) {
+            jQuery(".Reviews-Page a.submitdelete").click(function(event) {
 
 				
 
